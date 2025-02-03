@@ -60,8 +60,10 @@
 - $1 + cot^2(x) = csc^2(x)$
 - $tan^2(x) + 1 = sec^2(x)$
 
+=== Euler's Formula (just derive them lol)
+$e^(i theta) = cos(theta) + i sin(theta)$
+
 === Double-Angle
-- $sin(2x) = 2 dot sin(x) dot cos(x)$
 - $cos(2x) = cos^2(x) - sin^2(x)$ #linebreak()
 $#h(34pt) = 2 dot cos^2(x) + 1$ #linebreak() 
 $#h(34pt) = 1 - 2 dot sin^2(x)$
@@ -72,14 +74,14 @@ $#h(34pt) = 1 - 2 dot sin^2(x)$
 - $cos^2(x) = (1 + cos(2x))/2$
 - $tan^2(x) = (1 - cos(2x))/(1 + cos(2x))$
 
-
+=== Angle-Sum
+- $cos(x plus.minus y) = "???"$ #h(34pt) $sin(x plus.minus y) = "???"$
+Hint: $e^(x + y) = e^x e^y$
 
 
 #colbreak()
 
 == Even/Odd Functions
-
-Let $E$ denote even, $O$ denote odd, $N$ denote neither.
 
 #table(
   columns: (auto, auto, auto, auto),
@@ -94,11 +96,9 @@ Let $E$ denote even, $O$ denote odd, $N$ denote neither.
 )
 
 == Difference of Powers
-#super("in case you have to prove the power rule")
 - $a^2 - b^2 = (a-b)(a+b)$
 - $a^3 - b^3 = (a-b)(a^3 + a^2b + a b^2 +b^3)$
 - $a^4 - b^4 = (a-b)(a^4 + a^3b + a^2b^2 + a b^3 + b^4)$
-and so on...
 
 == Exponents/Logarithms
 === Log Rules
@@ -107,20 +107,39 @@ and so on...
 3. $log_b (x^n) = n dot log_b (x)$
 5. $(log_a (x)) / (log_a (x)) = log_b (x)$
 
-=== Exponential Form
-Any exponential function of the form $b^x$ can be written (using exponent rules) as $e^(k x)$, where $k$ is a constant. This leads to the general exponential form:
-$A e^(k t)$. 
+== Hyperbolic Trig
+=== Definitions
+- $sinh(x) = (e^x - e^(-x))/2$ #h(34pt) $sinh^(-1)(x) = ln(x + sqrt(x^2 + 1))$ 
+- $cosh(x) = (e^x + e^(-x))/2$ #h(33pt) $cosh^(-1)(x) = ln(x + sqrt(x^2 -1))$
 
-=== Exponential Fitting
-Given any two points, $a = (x, y)$ and $b = (x, y)$, we can fit a unique exponential function to them.
-Let $f(x) = A e^(k t)$. 
+=== Identities
+- Pythagorean: $cosh^2(t) - sinh^2(t) = 1$ \
+ #h(59pt) $1 - tanh^2(t) = sech^2(t)$
+- Double-angle: $sinh(2t) = 2 sinh(t) cosh(t)$ \
+ #h(59pt) $cosh(2t) = cosh^2(t) + sinh^2(t)$
 
-- $f(a_x) = A e^(k a_x) = a_y$.
-- $f(b_x) = A e^(k b_x) = b_y$.
-- $(A e^(k b_x))/(A e^(k a_x)) = b_y/a_y = e^(k (b_x - a_x))$
-- $ln(b_y/a_y) = k(b_x - a_x)$
-- Now we can isolate $k$:
-- $ln(b_y/a_y)/(b_x-a_x) = k$
-- With this $k$, we can plug it back in to either of the original equations and acquire our $A$, or our principal.
-- $A e^(k a_x) = a_y$
-- $A = (a_y)/(e^(k a_x))$
+
+=== Derivatives
+#table(
+  columns: (auto, auto),
+  inset: 10pt,
+  align: horizon,
+  table.header(
+    [*$f(x)$*], [*$f'(x)$*]
+  ),
+  $sech(t)$, $-sech(t)tanh(t)$,
+  $csch(t)$, $-csch(t)coth(t)$,
+
+)
+
+=== Note on deriving formulas:
+When encountering a $plus.minus$ inside of the logarithm, it is the case for the two inverse hyp. trig functions this happens to that the two forms are equivalent. Multiplying by the conjugate and recognizing the exponent $-1$ can be put into the expression using log rules will show this.
+
+== Various tools that may be needed:
+- quadratic equation
+- triangle method + implicit differentiation
+- log rules, exponent rules
+- go slow on derivatives, _*especially*_ those with quotients!
+- logarithmic differentiation might be better for the exponential function
+- can you differentiate any inverse trig function?
+- the tanh inverse and derivative
