@@ -53,7 +53,7 @@ For a set $A$ to be a partition of $B$, the following must be true of $A$:
 A #underline[_Function_] is a relation $F$ on a set $X$ to a set $Y$ where every element in $X$ maps to exactly one element of set $Y$.
 
 - #underline[_Injectivity_]: $forall (a, b) in X, f(a) = f(b) <=> a = b$
-- #underline[_Surjectivity_]: $forall a in Y, exists b "s.t." f(b) = a$
+- #underline[_Surjectivity_]: $forall a in Y, exists b in X "s.t." f(b) = a$
 - #underline[_Bijectivity_]: Injective and Surjective
 
 Useful Facts:
@@ -62,9 +62,9 @@ Useful Facts:
 - #underline[Within the context of this class], invertible means bijective.
   - Invertible isn't really a formally defined term, so it can vary. In other contexts, it tends to simply mean injective.
 
-Images and Preimages
+#underline[_Images_]: Given some $f : X -> Y$, The image of an input value $x$ is the set of outputs it may produce. The preimage of an output $y$ is the set of input values that produce $y$.
 
-_Cantor-Bernstein Theorem_: Given infinite sets $A$ and $B$, iff $exists$ some injective function from $A$ to $B$, and $exists$ some injective function from $B$ to $A$, $|A|$ = $|B|$.
+_Cantor-Bernstein Theorem_: Given infinite sets $A -> B$, iff $exists$ some injective function from $A -> B$, and $exists$ some injective function from $B -> A$, then $exists$ some bijective function from $A -> B$. It follows that the two sets have the same cardinality: $|A|$ = $|B|$.
 
 === Sets
 - $P(A) = { S : S subset.eq A}$
@@ -74,12 +74,7 @@ _Cantor-Bernstein Theorem_: Given infinite sets $A$ and $B$, iff $exists$ some i
 - Set equality: The formal definition: $A = B <=> A subset.eq B and B subset.eq A$.
 
 == Useful Properties
-1. Closure
-2. Connectedness of a relation - strong & weak
-
-// == Procedures
-// === Proof Structure
-
+1. Connectedness of a relation - strong & weak
 
 == Types of Proof
 === Direct Proof
@@ -100,7 +95,22 @@ Assume a counterexample can be found. Then there is an element in the domain tha
   - Makes the conclusion false
 This leads to a contradiction.
 
-=== Proof Tips
+== Subtypes of Proof (?)
+=== Element-wise Proofs
+Show that for _any_ arbitrary element inside a set, some relation holds.
+- $A subset.eq B$: $forall x in A, x in B$ 
+- $A = B$: $A subset.eq B and B subset.eq A$
+
+=== Function Proofs
+They basically involve proving either:
+- Surjectivity
+- Injectivity
+- Both (Invertibility)
+
+=== Logical Equivalence proofs
+Show that two statements are logically equivalent using logic laws.
+
+== Proof Tips
 - Use the definitions to express things that reveal fundamental properties
 - Use variables that represent *any* element in the domain
 - Do not use the same variable for two different things
@@ -108,9 +118,6 @@ This leads to a contradiction.
 - The resulting conclusions should be true for any element in the domain.
 #linebreak()
 
-- Element-wise Proofs
-- Logical Equivalence proofs
-- What about function proofs? Get a couple examples of these on the sheet.
 
 === Set-Builder Notation
 $S = { "domain" | "predicate"}$
@@ -148,6 +155,66 @@ $S = { "domain" | "predicate"}$
 - But by (1), $n + 1$ must be divisible by some prime number.
 - This contradicts our assumption that $p$ is the largest prime number. Therefore, there are infinitely many prime numbers. $qed$
 
+=== $A inter B subset.eq A$ - element-wise.
+- Let $A$ and $B$ be any sets.
+- Let $x$ be any element of $A inter B$.
+- By definition of $inter$, $x in A and x in B$.
+- Since our choice of $x$ was arbitrary, this implies every element in $A inter B$ is also in $A$.
+- Therefore, $A inter B subset.eq A. qed$
+
+=== $A subset.eq C and B subset.eq C => A union B subset.eq C$ - element-wise.
+- Let sets $A, B, C$ be any sets s.t. $A subset.eq C and B subset.eq C$.
+The goal here is to prove that for every element $x$, $x in A union B => x in C$.
+- By definition of $union$, we consider two possible cases:
+  - $x in A$
+    - Since $A subset.eq C$, by definition of $subset.eq, x in C$.
+  - $x in B$
+    - Since $B subset.eq C$, by definition of $subset.eq, x in C$.
+- In both cases, $x in C$; therefore, $A union B subset.eq C. qed$
+
+=== $(A inter B) union (A inter C) = A inter (B union C)$ - element-wise.
+By definition of set equality, we must prove two things:
+1. $(A inter B) union (A inter C) subset.eq A inter (B union C)$
+2. $A inter (B union C) subset.eq (A inter B) union (A inter C)$
+
+  For 1: Let $x in (A inter B) union (A inter C)$. By definition of $union$, we consider two possible cases:
+  1. $x in A inter B$
+    - By definition of $inter$, $x in A and x in B$.
+    - By definition of $union$, $x in B => x in B union C$.
+    - By definition of $inter$, since $x in A and x in B union C, x in A inter (B union C)$.
+  2. $x in A inter C$.
+    - By definition of $inter$, $x in A and x in C$.
+    - By definition of $union$, $x in C => x in B union C$.
+    - By definition of $inter$, since $x in A and x in B union C, x in A inter (B union C)$.
+  Therefore, $x in (A inter B) union (A inter C) subset.eq A inter (B union C). qed$
+
+  For 2: Let $x in A inter (B union C)$. By definition of $inter$, we know $x in A and x in (B union C).$ By definition of $union$, we consider two possible cases:
+  1. $x in A and x in B$.
+    - By definition of $inter$, $x in A inter B$.
+    - By definition of $union$, $x in (A inter B) union (A inter C)$.
+  2. $x in A and x in C$.
+    - By definition of $inter$, $x in A inter C$.
+    - By definition of $union$, $x in (A inter B) union (A inter C)$.
+  Therefore, $x in A inter (B union C) subset.eq (A inter B) union (A inter C). qed$
+
+Since we have proved (1) and (2), $(A inter B) union (A inter C) = A inter (B union C). qed$
+
+=== Prove that $g : QQ -> QQ$ with the rule $g(x) = 5x - 1$ is surjective - function proof.
+- Let $y in QQ$ (the codomain).
+- We wish to show that $exists x in QQ, g(x) = y$.
+- By substitution, $5x - 1 = y$.
+- By algebra, $x = (y + 1)/5$.
+- We also wish to show that $x in QQ$.
+- By closure under addition, $y + 1 in ZZ$.
+- By definition of $QQ$, $(y + 1)/5 = p/q, p, q in ZZ => (y + 1)/5 in QQ$.
+
+=== Prove that $f : ZZ -> ZZ$ with the rule $f(x) = 5x + 7$ is injective - function proof.
+- Let $a, b in ZZ "s.t." f(a) = f(b)$. (Show they must be the same number)
+- Then, $5a + 7 = 5b + 7$.
+- By subtraction, $5a = 5b$.
+- Since both sides are divisible by 5, the Division Theorem says the quotient must be unique.
+- Therefore, $a = b. qed$
+
 == Other
-- Remainder theorem?
+- Remainder Theorem: any $a mod$ some $b$ has exactly one remainder.
 - What other theorems??
