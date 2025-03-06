@@ -215,6 +215,25 @@ Since we have proved (1) and (2), $(A inter B) union (A inter C) = A inter (B un
 - Since both sides are divisible by 5, the Division Theorem says the quotient must be unique.
 - Therefore, $a = b. qed$
 
+=== Prove that there are infinite integers - proof by contradiction.
+- Assume not. That is, assume there is some integer $n$, s.t. $forall m in ZZ, n > m$.
+- Consider $n + 1$. By closure over addition, $n + 1$ must be an integer as well.
+- This contradicts our assumption that $n$ was the largest integer. Therefore, there are infinitely many integers. $qed$
+
+=== Prove that the composition of two injective functions is itself an injective function - direct.
+- Let $f : X -> Y, g : Y -> Z$, where $g, y$ are both injective functions.
+- By definition of injectivity, $g(x_1) = g(x_2) => x_1 = x_2$, and $f(x_1) = f(x_2) => x_1 = x_2$. (variable names might not be acceptable here)
+- Applying the composition, we want to show that $g(f(a)) = g(f(b)) => a = b$.
+- By definition of injectivity, $g$ being injective implies $f(a) = f(b)$.
+- By definition of injectivity, $f$ being injective implies $a = b. qed$
+
+=== Prove that the composition of two injective functions is itself an injective function - contradiction.
+- Assume not. That is, $exists "distinct" x_1, x_2 "s.t. (1) " g(f(x_1)) = g(f(x_2))$.
+- By definition of injectivity, $g$ being injective implies $f(x_1) = f(x_2)$.
+- By definition of injectivity, $f$ being injective implies $x_1 = x_2$.
+- But this contradicts (1) - our assumption that $x_1$ and $x_2$ are distinct. Therefore, $g compose f (x)$ is injective. $qed$
+This proof is basically just the direct proof again. Unsure if the one shown on 3/4 is correct...
+
 == Other
 - Remainder Theorem: any $a mod$ some $b$ has exactly one remainder.
 - What other theorems??
