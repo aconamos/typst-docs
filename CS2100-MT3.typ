@@ -102,13 +102,41 @@ Relations can be expressed as graphs.
 - #underline[_Rule of Sums_]: If there are $n$ ways to do task $A$ and $m$ ways to do task $B$, then there are $m + n$ ways to do task $A$ or $B$ but not both.
 - #underline[_Choose_]: $binom(n, r) = n!/(r!(n-r)!)$ #h(34pt) #underline[_Permute_]: $P(n, r) = n!/(n-r)!$ 
 
-=== Example Problems
-put shit here please in the morning!!!! you got this!!!!! it can't be that hard!!!!!!!
+== Example Problems
+=== How many ways to rearrange the letters in the word "MISSISSIPPI":
+- $11$ letters means $11!$ permutations, but this is an overcount
+- Each set of identical letters is overcounted, so divide by those permutations:
+- $11!/(4! dot 4! dot 2! dot 1!)$
 
-Test 3 Logistics:
-- Counting (No probability)
-	- *Counting problems*
-	- How many functions are there between two sets
-	- Bag of candies problems w/ restrictions INCLUDING the apples/oranges type restrictions
-	- Committee-style problems
-	- One of the piazza puzzles is on the test basically (a variation)
+=== How many sequences $(x, y, z)$ of non-negative integers satisfy $x + y + z = 10$?
+- The solution is a sequence of three numbers in $ZZ^(>= 0)$ that add up to 10. Note:
+	- Order matters, because it is a sequence
+	- Repeats are allowed
+	- This is not an unordered list structure
+- How many binary sequences of length $12$ have exactly two $1$'s and ten $0$'s?
+- Precisely equal to the desired answer.
+- The number of binary sequences of length $r + n - 1$ containing exactly $r space 0$'s is $binom(r + n - 1, r)$.
+
+=== How many outcomes frrom four throws of a six-sided die sum to 14?
+1. Count solutions where all $x_i >= 1$.
+2. Count solutions where some $x_j >= 7$.
+3. Required answer is (1) - (2).
+
+$x_1 + x_2 + x_3 + x_4 = 14$.
+
+1: 
+- The minimum number that appears on a die is 1, so 4 out of 14 is already guaranteed.
+- The same as counting solutions where $y_i >= 0$ for the equation $y_1 + y_2 + y_3 + y_4 = 10$.
+- We know that the number of solutions with $y_i >= 0$ is $binom(10 + 4 - 1, 10) = 286$.
+
+2: Count solutions where at least one $x_j >= 7$ for $x_1 + x_2 + x_3 + x_4 = 14$.
+- Equivalent to "How many bags of 14 pieces of fruit can be bought from a store that sells apples, bananas, oranges, and pears, if we get at least 7 of one kind and one of each other kind?"
+- One way to pick 7 apples, 1 banana, 1 orange, and 1 pear.
+	- How many ways to pick the remaining 4 pieces of fruit to fill the bag?
+	- Equivalent to $z_1 + z_2 + z_3 + z_4 = 4$.
+	- $binom(4 + 4 - 1, 4)$.
+- One way to pick 1 apple, 7 bananas, 1 orange, and 1 pear.
+- So on, and so forth...
+- Resulting quantity is $binom(4 + 4 - 1, 4) dot 4$.
+
+3: Required answer is (1) - (2).
